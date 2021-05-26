@@ -40,15 +40,25 @@ public class WaterCell : ICellState
         }
         if (fluidQuantity == 0.0f)
         {
+            cell.State = new EmptyCell();
             return;
         }
         if (fluidQuantity < minFluidValue)
         {
             fluidQuantity = 0.0f;
+            cell.State = new EmptyCell();
+            return;
+        }
+        if (fluidQuantity < maxFluidValue)
+        {
             return;
         }
         foreach (var neighbour in cell.neighbours)
         {
+            if (neighbour.State is EmptyCell)
+            {
+                neighbour.State = new WaterCell();
+            }
             if (neighbour.State is WaterCell)
             {
                 var n = neighbour.State as WaterCell;
