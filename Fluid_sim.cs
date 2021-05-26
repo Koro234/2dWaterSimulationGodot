@@ -4,6 +4,7 @@ using System;
 public class Fluid_sim : Godot.Node2D
 {
     private TileMap _tileMap;
+    private Button _gravity;
     [Export]
     public int gridX = 128;
     [Export]
@@ -11,11 +12,14 @@ public class Fluid_sim : Godot.Node2D
     [Export]
     private float timeTicRate = 0.08f;
     private float timePassed = 0.0f;
+    private bool StopTic = false;
+    private bool GravityOnOff = false;
     private Cell[,] _cellBuffer;
 
     public override void _Ready()
     {
         _tileMap = GetNode<TileMap>("TileMap");
+        _gravity = GetNode<Button>("Button");
         _cellBuffer = new Cell[gridX, gridY];
         CellCreater();
         SetNeighbors();
@@ -25,9 +29,18 @@ public class Fluid_sim : Godot.Node2D
         var tempCell = (Cell)_cellBuffer[(int)(GetGlobalMousePosition().x/8), (int)(GetGlobalMousePosition().y/8)];
         if (Input.IsMouseButtonPressed(1))
         {
-            tempCell.State = new WaterCell();
-            var wc = tempCell.State as WaterCell; 
-            wc.fluidQuantity += 10f;
+            if (GravityOnOff == true)
+            {
+                tempCell.State = new WaterCellGravity();
+                var wc = tempCell.State as WaterCellGravity; 
+                wc.fluidQuantity += 10f;
+            }
+            else
+            {
+                tempCell.State = new WaterCell();
+                var wc = tempCell.State as WaterCell; 
+                wc.fluidQuantity += 10f;
+            }
         }
         else if (Input.IsMouseButtonPressed(2))
         {
@@ -37,6 +50,10 @@ public class Fluid_sim : Godot.Node2D
     public override void _PhysicsProcess(float delta)
     {
         Inject();
+        if (StopTic == true)
+        {
+            return;
+        }
         timePassed += delta;
         if (timePassed > timeTicRate)
         {
@@ -65,7 +82,7 @@ public class Fluid_sim : Godot.Node2D
         {
             for (int j = 0; j < gridY; j++)
             {
-                Cell c = new Cell(new WaterCell());
+                Cell c = new Cell(new EmptyCell());
                 c.x = i;
                 c.y = j;
                 _cellBuffer[i,j] = c;
@@ -94,5 +111,50 @@ public class Fluid_sim : Godot.Node2D
         package[3] = _cellBuffer[x - 1, y];
 
         return package;
-    } 
+    }
+    private void _on_GravityButton_pressed()
+    {
+        StopTic = true;
+        GravityOnOff =! GravityOnOff;
+        if (GravityOnOff == true)
+        {
+            for (int i = 0; i < gridX; i++)
+            {
+                for (int j = 0; j < gridY; j++)
+                {
+                    var tempCell = _cellBuffer[i, j].State;
+                    if (tempCell is WaterCell)
+                    {
+                        var tempWC = tempCell as WaterCell;
+                        var tempFluid = tempWC.fluidQuantity;
+                        _cellBuffer[i, j].State = new WaterCellGravity();
+                        var newCell = _cellBuffer[i, j].State as WaterCellGravity;
+                        newCell.fluidQuantity = tempFluid;
+                    }
+                }
+            }
+            _gravity.Text = "true";
+        }
+        else
+        {
+            for (int i = 0; i < gridX; i++)
+            {
+                for (int j = 0; j < gridY; j++)
+                {
+                    var tempCell = _cellBuffer[i, j].State;
+                    if (tempCell is WaterCellGravity)
+                    {
+                        var tempWC = tempCell as WaterCellGravity;
+                        var tempFluid = tempWC.fluidQuantity;
+                        _cellBuffer[i, j].State = new WaterCell();
+                        var newCell = _cellBuffer[i, j].State as WaterCell;
+                        newCell.fluidQuantity = tempFluid;
+                    }
+                }
+            }
+            _gravity.Text = "false";
+        }
+        StopTic = false; 
+        
+    }
 }
