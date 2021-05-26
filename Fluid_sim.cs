@@ -34,7 +34,6 @@ public class Fluid_sim : Godot.Node2D
             tempCell.State = new BlockCell();
         }
     }
-
     public override void _PhysicsProcess(float delta)
     {
         Inject();
@@ -48,7 +47,6 @@ public class Fluid_sim : Godot.Node2D
             timePassed = 0f;
         }
     }
-
     private void UpdateSimulation()
     {
         for (int i = 0; i < gridX; i++)
