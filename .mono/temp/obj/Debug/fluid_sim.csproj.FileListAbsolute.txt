@@ -1,0 +1,8 @@
+C:\Users\roman\OneDrive\Рабочий стол\Project_Saas\fluid_sim\.mono\temp\bin\Debug\fluid_sim.dll
+C:\Users\roman\OneDrive\Рабочий стол\Project_Saas\fluid_sim\.mono\temp\bin\Debug\fluid_sim.pdb
+C:\Users\roman\OneDrive\Рабочий стол\Project_Saas\fluid_sim\.mono\temp\obj\Debug\fluid_sim.csprojAssemblyReference.cache
+C:\Users\roman\OneDrive\Рабочий стол\Project_Saas\fluid_sim\.mono\temp\obj\Debug\fluid_sim.AssemblyInfoInputs.cache
+C:\Users\roman\OneDrive\Рабочий стол\Project_Saas\fluid_sim\.mono\temp\obj\Debug\fluid_sim.AssemblyInfo.cs
+C:\Users\roman\OneDrive\Рабочий стол\Project_Saas\fluid_sim\.mono\temp\obj\Debug\fluid_sim.csproj.CoreCompileInputs.cache
+C:\Users\roman\OneDrive\Рабочий стол\Project_Saas\fluid_sim\.mono\temp\obj\Debug\fluid_sim.dll
+C:\Users\roman\OneDrive\Рабочий стол\Project_Saas\fluid_sim\.mono\temp\obj\Debug\fluid_sim.pdb

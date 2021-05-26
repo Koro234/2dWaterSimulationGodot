@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://levels.png" type="Texture" id=1]
-[ext_resource path="res://Node.cs" type="Script" id=2]
+[ext_resource path="res://Fluid_sim.cs" type="Script" id=2]
 
 [sub_resource type="TileSet" id=1]
 1/name = "levels.png 1"
@@ -131,7 +131,7 @@
 9/shapes = [  ]
 9/z_index = 0
 
-[node name="Fluid_sim" type="Node"]
+[node name="Fluid_sim" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
