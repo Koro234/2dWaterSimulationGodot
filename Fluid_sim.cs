@@ -41,9 +41,6 @@ public class Fluid_sim : Godot.Node2D
         if (timePassed > timeTicRate)
         {
             UpdateSimulation();
-            UpdateSimulation();
-            UpdateSimulation();
-            UpdateSimulation();
             timePassed = 0f;
         }
     }
