@@ -5,7 +5,6 @@ public interface ICellState
 {
     void Calculation(Cell cell);
 }
-
 public class Cell
 {
     public int x {get; set;}
@@ -21,7 +20,6 @@ public class Cell
     {
         State.Calculation(this);
     }
-
 }
 public class WaterCell : ICellState
 {

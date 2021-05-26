@@ -109,7 +109,6 @@ public class Fluid_sim : Godot.Node2D
         package[1] = _cellBuffer[x + 1, y];
         package[2] = _cellBuffer[x, y + 1];
         package[3] = _cellBuffer[x - 1, y];
-
         return package;
     }
     private void _on_GravityButton_pressed()
