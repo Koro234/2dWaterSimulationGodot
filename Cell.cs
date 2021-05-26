@@ -88,3 +88,11 @@ public class EmptyCell : ICellState
         return;
     }
 }
+public class BlockCell : ICellState
+{
+    public void Calculation(Cell cell)
+    {
+        cell.TileNum = 0;
+        return;
+    }
+}

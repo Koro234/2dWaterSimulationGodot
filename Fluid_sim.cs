@@ -22,15 +22,16 @@ public class Fluid_sim : Godot.Node2D
     }
     private void Inject()
     {
+        var tempCell = (Cell)_cellBuffer[(int)(GetGlobalMousePosition().x/8), (int)(GetGlobalMousePosition().y/8)];
         if (Input.IsMouseButtonPressed(1))
         {
-            var waterCell = (Cell)_cellBuffer[(int)(GetGlobalMousePosition().x/8), (int)(GetGlobalMousePosition().y/8)];
-            if (waterCell.State is EmptyCell)
-            {
-                waterCell.State = new WaterCell();
-            }
-            var wc = waterCell.State as WaterCell; 
+            tempCell.State = new WaterCell();
+            var wc = tempCell.State as WaterCell; 
             wc.fluidQuantity += 10f;
+        }
+        else if (Input.IsMouseButtonPressed(2))
+        {
+            tempCell.State = new BlockCell();
         }
     }
 
