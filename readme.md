@@ -1,6 +1,9 @@
 # First use git. 2d water simulation with cellular automaton in Godot(C#)
 
 Simulation is based on the logic of cellular automata, added state system.
+
+LCM - Water, RCM - Block.
+
 You can improve the speed of work by moving the UpdateMap from PhysicsProcess to Process.
 
 Class WaterCell works stably.
