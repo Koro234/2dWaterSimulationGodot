@@ -10,7 +10,7 @@ public class Fluid_sim : Godot.Node2D
     [Export]
     public int gridY = 75;
     [Export]
-    private float timeTicRate = 0.08f;
+    private float timeTicRate = 0.008f;
     private float timePassed = 0.0f;
     private bool StopTic = false;
     private bool GravityOnOff = false;
@@ -65,7 +65,7 @@ public class Fluid_sim : Godot.Node2D
     {
         for (int i = 0; i < gridX; i++)
         {
-            for (int j = 0; j < gridY; j++)
+            for (int j = gridY - 1; j >= 0; j--)
             {
                 _cellBuffer[i, j].Calculation();
                 UpdateMap(_cellBuffer[i, j]);
@@ -105,10 +105,10 @@ public class Fluid_sim : Godot.Node2D
     private Cell[] PackagingNeighbours(int x, int y)
     {
         Cell[] package = new Cell[4];
-        package[0] = _cellBuffer[x, y - 1];
+        package[0] = _cellBuffer[x, y + 1];
         package[1] = _cellBuffer[x + 1, y];
-        package[2] = _cellBuffer[x, y + 1];
-        package[3] = _cellBuffer[x - 1, y];
+        package[2] = _cellBuffer[x - 1, y];
+        package[3] = _cellBuffer[x, y - 1];
         return package;
     }
     private void _on_GravityButton_pressed()

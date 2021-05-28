@@ -120,10 +120,9 @@ public class WaterCellGravity : ICellState
                 {
                     flow = VerticalFlow(fluidQuantity, n.fluidQuantity) - n.fluidQuantity;
                 }
-                else if (i == 2)
+                else if (i == 3)
                 {
                     flow = VerticalFlow(fluidQuantity, n.fluidQuantity);
-                    
                 }
                 else
                 {
